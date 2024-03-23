@@ -1,13 +1,22 @@
 console.log("Before")
-const data = getUser(1, (user) => {
-
-
-    // 
-    getRepos(user.username, (repos) => {
-        console.log("Repos:",repos)
-    }) 
-})
+getUser(1, getRepos)
 console.log("After")
+
+function getRepos(user) {
+    getRepos(user.username, getCommits)
+}
+
+
+function getCommits(repo) {
+    getCommits(repo, displayCommits)
+}
+
+function displayCommits(commits) {
+    console.log(commit)
+}
+
+
+
 
 function getUser(id, callback) {
     setTimeout(() => {
@@ -24,3 +33,4 @@ function getRepos(id,callback) {
         ])
     }, 2000);
 }
+
