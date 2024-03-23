@@ -7,12 +7,25 @@ console.log('Before');
 //   })
 // });
 
-getUser(1)
-  .then(user => 
-    getRepositories(user.gitHubUsername)
-      .then(repos => getCommits(repos[0]))
-      .then(commit => console.log("Commits", commit)))
-  .catch(err => console.log("Error",err))
+// getUser(1)
+//   .then(user => getRepositories(user.gitHubUsername))
+//       .then(repos => getCommits(repos[0]))
+//       .then(commit => console.log("Commits", commit))
+//   .catch(err => console.log("Error",err))
+
+check()
+async function  check() {
+  try {
+      
+    const user =  await getUser(1)
+    const repos = await getRepositories(user.gitHubUsername)
+    const commit = await getCommits(repos)
+    console.log(commit)
+  } catch (err) {
+    console.log("Error", err)
+  }
+}
+
 
 
 console.log('After');
